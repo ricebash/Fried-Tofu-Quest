@@ -1,0 +1,43 @@
+MGQ Beat em up
+-Mechanics
+1. There is only one stage, filled with obstacles/enemies, with Tamamo as the final boss
+2. Luka has an HP BAR(computations for damage, etc. will be handles later), and an MP Bar for skills
+The skills are as follows
+a.Sylph(mapped to Q,uses 1 MP)- Luka summons Sylph which grants him a barrier that deflects projectiles
+b.Gnome(mapped to W,uses 1 MP)- Luka summons Gnome which grants him stagger protection, and halves damage received
+c.Undine(mapped to E, uses 4MP)- Luka summons Undine which grants him invulnerability to all damage but depletes the
+						MP bar fast until it is over, or Serene Demon Sword is used
+d.Salamander(mapped to R,uses 4MP)- Luka summons Salamander which greatly boosts his atk for a short time,
+									but you cannot heal during the duration your atk is boosted
+e.Meditation(mapped to A,uses 1/3 of max MP)- Luka uses some unknown power which heals him for half his max hp
+f.Demon Decapitation(mapped to X) - Luka Slashes the neck of an enemy, doing great damage
+									if(Undine is summoned, ability turns into Serene Demon Sword)
+	f.1 Serene Demon Sword - With the fluidity of water, Luka cleanly slices an enemy, doing a 1 hit KO if
+							it is a normal enemy, or considerably more damage if it is a boss, this also focibly
+							ends the Undine summon
+g.Thunder Thrust(mapped to forward + X,uses 2MP) - Luka charges forward, thrusting enemies on his way. Enemies hit will take damage
+										  Luka is invincible during the charge
+										  if(Sylph is summoned, ability turns into Lightning Sword Flash)
+	g.1 Lightning Sword Flash - With the power of wind, Luka charges with even more force, and
+								leaving behind a trail of lightning bolts
+h.Demon Skull Beheading(mapped to down + X, usable only if on air,3MP) - 
+						Luka drops down on the enemies, dealing considerable damage, also causing a shockwave
+						which deals damage to enemies hit
+						if(Gnome is summoned, ability is turned to Earth Rumbling Decapitation)
+	h.1 Earth Rumbling Decapitation-Luka uses the power of the Earth so he can freely use this skill even if he is not on air,
+								   deals more damage than Earth Rumbling Decapitation, with a larger shockwave
+i. Death Sword Chaos Star(mapped to back X, requires a small amount of charge time,4MP)
+						- Anyone unlucky enough to be in front of Luka is hit by 5 sword slashes,each dealing great damage
+						Luka teleports if he uses this skill, he is also invulnerable for 1 second after casting, easily interruptable
+					    with about 3 or 4 seconds casting time. Luka teleports, and anyone between where he was, and where he goes are slashed
+						if(Salamander is summoned, ability is turned into Vaporizing Rebel Sword)
+	i.1 Vaporizing Rebel Sword - Using the power of fire, each slash becomes infused with fire, making it mroe deadly,
+								 each slash does about 1.5 times more damage, and makes Luka invulnerable for 1.5 seconds after casting
+j.Quadruple Giga(mapped to X + Z, uses 1 MP)
+				- The ultimate attack using the power of the elements, if used, all buffs are nullified,
+				  and if hit with anything during the charge time it is cancelled, however it deals 9999 damage to all
+				  requires 16 second charging time
+3.Z is used as the normal attack button, space to jump, C to block, Arrow keys to move.
+
+4.Normal enemies to follow, depending on the scenario used.
+								 
