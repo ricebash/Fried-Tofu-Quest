@@ -1,0 +1,3 @@
+#include "..\include\Resources.h"
+
+RES_LOGO_ID             IMAGE           "..\\Resources\\4 Spirits.jpg"
