@@ -7,13 +7,23 @@ using namespace ci;
 using namespace ci::app;
 //using namespace std;
 
-float y = 400;
+float y = 450;
 float x = 100;
+float squishx = 0;
+float squishy = 0;
 float width = 30;
 float height = 50;
-float grav = 0.1;
+float grav = -9.8*50;
 float jumpow = 0;
-float limit = 0;
+int isJumping = 0;
+float elapsed = 0;
+const float u = 30;
+float curr = 0;
+float vel = 0;
+int isGoingRight = 0;
+int isGoingLeft = 0;
+int isGrounded = 1;
+int Squish = 0;
 
 class Main : public AppBasic {
   public:
@@ -42,40 +52,104 @@ void Main::mouseDown( MouseEvent event )
 void Main::update()
 {
 	//x = x + 0.1;
-	if(y + height - jumpow < 500 && limit == 0)
+	elapsed = getElapsedSeconds() - curr;
+	if(isJumping && !isGrounded)
 	{
-		jumpow = jumpow - 5;
+		jumpow = jumpow + 80 +(grav*elapsed);
+	}
+	if(jumpow >=100)
+	{
+		isJumping = 0;
+	}
+	if(y + height - jumpow < 500)
+	{
+		jumpow = jumpow + (grav*elapsed);
 	}
 	else
 	{
-		limit = 1;
+		jumpow = 0;
+		isGrounded = 1;
 	}
+	if(isGoingRight)
+	{
+		x = x+ 5;
+	}
+	if(isGoingLeft)
+	{
+		x = x- 5;
+	}
+	if(Squish)
+	{
+		
+		if(squishy+2.5 < height)
+		{
+			squishx = squishx + 2.5;
+			squishy = squishy + 2.5;
+		}
+	}
+	if(!Squish)
+	{
+		if(squishx >=5)
+		{
+			squishx =squishx-5;
+		}
+		else
+		{
+			squishx = 0;
+		}
+		if(squishy >=5)
+		{
+			squishy = squishy -5;
+		}
+		else
+		{
+			squishy = 0;
+		}
+	}
+	curr = getElapsedSeconds();
 }
 
 void Main::keyDown(KeyEvent event)
 {
-	if(event.getChar() == 'w')
+	if(event.getCode() == KeyEvent::KEY_SPACE)
 	{
-		if(jumpow < 40 && limit == 1)
+		if(isGrounded)
 		{
-			jumpow = jumpow + 5;
-		}
-		if(jumpow >=40)
-		{
-			limit = 0;
+			isJumping = 1;
+			isGrounded = 0;
 		}
 	}
 	if(event.getCode() == KeyEvent::KEY_RIGHT)
 	{
-		x = x + 5;
+		isGoingRight = 1;
+	}
+	if(event.getCode() == KeyEvent::KEY_DOWN)
+	{
+		Squish = 1;
+	}
+	if(event.getCode() == KeyEvent::KEY_LEFT)
+	{
+		isGoingLeft = 1;
 	}
 }
 
 void Main::keyUp(KeyEvent event)
 {
-	if(event.getChar() == 'w')
+	if(event.getCode() == KeyEvent::KEY_SPACE)
 	{
-		limit = 0;
+		isJumping = 0;
+	}
+	if(event.getCode() == KeyEvent::KEY_RIGHT)
+	{
+		isGoingRight = 0;
+	}
+	if(event.getCode() == KeyEvent::KEY_LEFT)
+	{
+		isGoingLeft = 0;
+	}
+	if(event.getCode() == KeyEvent::KEY_DOWN)
+	{
+		Squish = 0;
 	}
 }
 
@@ -93,7 +167,7 @@ void Main::draw()
 		gl::drawSolidRect(ground);
 	gl::color(1,1,1);
 	//gl::drawSolidCircle(Vec2f(x,y),50,6);
-	Rectf rec(x,y -jumpow,x+ width, y + height -jumpow);
+	Rectf rec(x-squishx,y -jumpow + squishy,x+ width + squishx, y + height -jumpow);
 	gl::drawSolidRect(rec);
 	//gl::clear( Color( wtf, wtf*0.5, wtf+0.1 ) );
 }
